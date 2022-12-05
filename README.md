@@ -17,7 +17,12 @@
  
  Features:
  - [x]  Users
+    - [x] Login (User credentials saved in Redux Global State)
+    - [x] Register
+ - [x]   Admin
     - [x] Login
     - [x] Register
+    - [x] Add Product
+    - [x] Add Product Image using Multer (Disk Storage)
  
  
