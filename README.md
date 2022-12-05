@@ -1,4 +1,4 @@
-# ecommerce
+# Ecommerce Website 
  MERN Stack application that allows users to register, browse products, add to cart, checkout and order products.
  
  Tech Stack:
@@ -15,14 +15,24 @@
  - Jwt for authentication
  - Multer for file uploads
  
- Features:
+ # Features:
  - [x]  Users
     - [x] Login (User credentials saved in Redux Global State)
     - [x] Register
- - [x]   Admin
-    - [x] Login
-    - [x] Register
-    - [x] Add Product
-    - [x] Add Product Image using Multer (Disk Storage)
+ - [ ] Products
+    - [ ] Search Products by category
+    - [ ] Pagination
+    - [ ] Page Size
+    - [x] Add Products 
+    - [ ] Filter Products by Tags
+    - [ ] Add and Remove Products from Cart
+    - [ ] Add and Remove Products from Wishlist
+    - [ ] Total Items and Net total (Invoice)
+ 
+    
+ #Future Features
+ - [ ] Admin Dashboard
+ - [ ] Add Review and Rating
+ - [ ] Filter products by category
  
  
