@@ -51,9 +51,9 @@ router.post("/", upload.single("file"), async (req, res) => {
 });
 
 router.put("/", upload.single("file"), async (req, res) => {
-  req.body.productImage = req.file.filename;
   console.log(req.file);
   try {
+    req.body.productImage = req.file.filename;
     console.log(req.body);
     const product = await Products.findOneAndUpdate(req.body);
     if (product) {

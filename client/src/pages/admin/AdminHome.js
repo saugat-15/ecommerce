@@ -5,18 +5,28 @@ import { useFormik } from "formik";
 // import AddIcon from "@mui/icons-material/Add";
 import "./styles/admin.css";
 import { Add } from "@mui/icons-material";
+import { Input } from 'antd';
 // import Modal from "@mui/material/Modal";
 import AddProducts from "./AddProducts";
 import { Button, Modal } from "antd";
 import { setProductDetails } from "../../reducersSlice/productSlice";
 import { useDispatch } from "react-redux";
+import SearchIcon from '@mui/icons-material/Search';
 
 function AdminHome() {
   const [products, setProducts] = useState([]);
   const [selectedItem, setSelectedItem] = useState({});
+  const [input, setInput] = useState('')
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const filterProducts = () => {
+    const searchProd = products.filter((product) => {
+      return product.productName === input
+    });
+    setProducts(searchProd)
+      
+  }
 
   const dispatch = useDispatch();
 
@@ -28,9 +38,10 @@ function AdminHome() {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [input]);
 
   console.log(products);
+  console.log(input);
   const navigate = useNavigate();
   // const handleClose = () => {
   //   onClose(selectedValue);
@@ -38,25 +49,21 @@ function AdminHome() {
   return (
     <div>
       <Nav />
-      <Modal
-        footer={null}
-        title="Basic Modal"
-        open={open}
-        onOk={handleClose}
-        onCancel={handleClose}
-      >
-        <AddProducts selectedItem={selectedItem} flag="edit-product" />
-      </Modal>
       <div className="header">
         <div>
           <img src='https://www.pngmart.com/files/11/Online-Portal-E-Commerce-PNG-Pic.png' height={100} width={200} />
         </div>
-        <p>Online Shopping. 50% Off Everything</p>
+        <p>Online Shopping. 50% Off Everything. Online Shopping. 50% Off Everything</p>
         <div>
           <button onClick={() => navigate("/products")}>
             <Add />
           </button>
         </div>
+      </div>
+      <div className="search">
+        <Input placeholder="Search" onChange={(e) => setInput(e.target.value) }/>
+        <SearchIcon style={{color: '#888', cursor: 'pointer'}} onClick={()=>filterProducts()}/>
+
       </div>
       <div className="products">
         {products.map((product) => (

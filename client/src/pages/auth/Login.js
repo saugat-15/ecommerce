@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { updateUsers } from "../../reducersSlice/userSlice";
+import { message } from "antd";
 const Basic = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const Basic = () => {
     if (data) {
       console.log(data);
       data.detail.token = data.token;
+      message.success('Logged In')
       dispatch(updateUsers(data.detail));
       if (data.detail.role === "admin") {
         navigate("/admin");
