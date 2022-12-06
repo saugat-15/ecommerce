@@ -5,12 +5,16 @@ import { setProductDetails } from "../reducersSlice/productSlice";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Search from "../components/Search";
 
 function HomePage() {
+  const searchedProduct = useSelector(state => state.product.searchedProduct);
   const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector(state => state.users);
+
+  console.log(searchedProduct)
 
   const fetchProducts = async () => {
     const response = await fetch("http://localhost:5000/products");
@@ -22,17 +26,18 @@ function HomePage() {
     fetchProducts();
   }, []);
 
-  console.log(products);
-  console.log(users);
+  // console.log(products);
+  // console.log(users);
   
 
   return (
     <div>
       <Nav />
       <Header />
+      <Search products={products}/>
       {/* hi,  */}
       <div className="products">
-        {products.map((product) => (
+        {searchedProduct.map((product) => (
           <div key={product._id} className="product">
             <Link
               to={`/products/${product._id}`}

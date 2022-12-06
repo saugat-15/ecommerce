@@ -5,28 +5,31 @@ import { useFormik } from "formik";
 // import AddIcon from "@mui/icons-material/Add";
 import "./styles/admin.css";
 import { Add } from "@mui/icons-material";
-import { Input } from 'antd';
+import { Input } from "antd";
 // import Modal from "@mui/material/Modal";
 import AddProducts from "./AddProducts";
 import { Button, Modal } from "antd";
 import { setProductDetails } from "../../reducersSlice/productSlice";
-import { useDispatch } from "react-redux";
-import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch, useSelector } from "react-redux";
+import SearchIcon from "@mui/icons-material/Search";
+import Search from "../../components/Search";
 
 function AdminHome() {
+  const searchedProduct = useSelector(state => state.product.searchedProduct)
   const [products, setProducts] = useState([]);
   // const [selectedItem, setSelectedItem] = useState({});
-  const [input, setInput] = useState('')
+  const [input, setInput] = useState("");
   const [open, setOpen] = useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
   const filterProducts = () => {
+    if (input) {
     const searchProd = products.filter((product) => {
-      return product.productName.toLowerCase() === input.toLowerCase()
-    });
-    setProducts(searchProd)
-      
-  }
+        return product.productName.toLowerCase() === input.toLowerCase();
+      });
+      setProducts(searchProd);
+    }
+  };
 
   const dispatch = useDispatch();
 
@@ -53,22 +56,25 @@ function AdminHome() {
       <Nav />
       <div className="header">
         <div>
-          <img src='https://www.kindpng.com/picc/m/121-1218470_ecommerce-png-transparent-images-e-commerce-crm-integrated.png' height={150} width={280} />
+          <img
+            src="https://www.kindpng.com/picc/m/121-1218470_ecommerce-png-transparent-images-e-commerce-crm-integrated.png"
+            height={150}
+            width={280}
+          />
         </div>
-        <p>Online Shopping. 50% Off Everything. Online Shopping. 50% Off Everything</p>
+        <p>
+          Online Shopping. 50% Off Everything. Online Shopping. 50% Off
+          Everything
+        </p>
         <div>
           <button onClick={() => navigate("/products")}>
             <Add />
           </button>
         </div>
       </div>
-      <div className="search">
-        <Input placeholder="Search" onChange={(e) => setInput(e.target.value) }/>
-        <SearchIcon style={{color: '#888', cursor: 'pointer'}} onClick={()=>filterProducts()}/>
-
-      </div>
+      <Search products={products}/>
       <div className="products">
-        {products.map((product) => (
+        {searchedProduct.map((product) => (
           <div key={product._id} className="product">
             <Link
               to={`./products/${product._id}`}
