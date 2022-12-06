@@ -68,7 +68,7 @@ const AdminRoute = () => {
     <Routes>
       <Route path="/admin" element={<AdminHome />} />
       <Route path="/products" element={<AddProducts />} />
-      <Route path="/products/product" element={<Product />} />
+      <Route path="/admin/products/:id" element={<Product />} />
     </Routes>
   );
 };

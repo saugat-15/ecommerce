@@ -71,7 +71,7 @@ function AdminHome() {
         {products.map((product) => (
           <div key={product._id} className="product">
             <Link
-              to="/products/product"
+              to={`./products/${product._id}`}
               style={{ textDecoration: "none", color: "#333" }}
               onClick={() => {
                 dispatch(setProductDetails(product));
