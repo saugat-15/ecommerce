@@ -5,15 +5,19 @@ import { message } from "antd";
 // import 'antd/dist/antd.min.css';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function AddProducts(props) {
+  const {product} = useSelector(state => state.product)
   const navigate = useNavigate();
   console.log(props.flag);
+  console.log(product)
 
   const initialValues = {
     productName: "",
     productType: "",
     price: "",
+    id: "",
     // foodCategory: "",
   };
   const [productImage, setProductImage] = useState("");
@@ -30,11 +34,12 @@ function AddProducts(props) {
             formData.append("productName", values.productName);
             formData.append("productType", values.productType);
             formData.append("price", values.price);
+            formData.append("id", product._id)
 
             const requestOptions = {
               method: props.flag ? "PUT" : "POST",
-              // headers: { "Content-Type": "application/json" },
-              body: formData,
+              // headers: props.flag ? '' : { "Content-Type": "application/json" },
+              body:  formData 
             };
 
             const response = await fetch(

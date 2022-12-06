@@ -22,7 +22,7 @@ function AdminHome() {
   const handleClose = () => setOpen(false);
   const filterProducts = () => {
     const searchProd = products.filter((product) => {
-      return product.productName === input
+      return product.productName.toLowerCase() === input.toLowerCase()
     });
     setProducts(searchProd)
       

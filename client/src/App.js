@@ -20,10 +20,9 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          {token && <Route path="/home" element={<HomePage />} />}
+          {token &&            <Route path="/admin" element={<AdminHome />} />}
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
-          <Route path="/admin" element={<AdminHome />} />
           <Route path="/products" element={<AddProducts />} />
           <Route path="/products/product" element={<Product />} />
         </Routes>
