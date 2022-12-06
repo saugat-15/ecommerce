@@ -9,31 +9,33 @@ import { useNavigate } from "react-router-dom";
 
 function Product() {
   const { product } = useSelector((state) => state.product);
+  const { users } = useSelector((state) => state);
   const [selectedItem, setSelectedItem] = useState({});
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const triggerDelete = async () => {
-    console.log('product deleted')
+    console.log("product deleted");
     const requestOptions = {
-        method: 'DELETE',
-      };
-  
-      const response = await fetch(
-        `http://localhost:5000/products/${product._id}`,
-        requestOptions
-      );
-  
-      const data = await response.json();
+      method: "DELETE",
+    };
 
-      if(data){
-        navigate('/admin')
-        message.success(data.message)
-      }
+    const response = await fetch(
+      `http://localhost:5000/products/${product._id}`,
+      requestOptions
+    );
 
-  }
+    const data = await response.json();
+
+    if (data) {
+      navigate("/admin");
+      message.success(data.message);
+    }
+  };
+
+  console.log(users);
 
   return (
     <div className="products">
@@ -58,18 +60,24 @@ function Product() {
         <h4> {product.productName}</h4>
         {/* <span>Type:{product.productType}</span> */}
         <span>${product.price}</span>
-        <div>
-
-        <button
-          onClick={() => {
+        <div style={users.role === 'user' ? {display: 'none'} : null}>
+        {/* <div> */}
+          <button style={{margin: '5px'}}
+            onClick={() => {
               handleOpen();
-              setSelectedItem(product)
+              setSelectedItem(product);
             }}
-            >
-          <Edit />
-        </button>
-        <button onClick={()=> triggerDelete()}><Delete /></button>
-            </div>
+            // disabled={`${users.role === "user" ? true : false}`}
+          >
+            <Edit />
+          </button>
+          <button style={{margin: '5px'}}
+            onClick={() => triggerDelete()}
+            // disabled={`${users.role === "user" ? true : false}`}
+          >
+            <Delete />
+          </button>
+        </div>
       </div>
     </div>
   );

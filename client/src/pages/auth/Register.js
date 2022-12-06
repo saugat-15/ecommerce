@@ -2,7 +2,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 // import FormText from "../../component/formText";
 // import Image from "../../images/delivery_girl.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 //   const navigate = useNavigate();
@@ -146,9 +146,6 @@ const Register = () => {
                     <option value="user" label="User">
                       User
                     </option>
-                    <option value="admin" label="Admin">
-                      Admin
-                    </option>
                     <option value="rider" label="Rider">
                       Rider
                     </option>
@@ -182,6 +179,7 @@ const Register = () => {
                   {errors.confirmPassword && touched.confirmPassword ? (
                     <div className="error">{errors.confirmPassword}</div>
                   ) : null}
+                  <span>Already have an Account? <Link to='/'>Login</Link></span>
                   <button type="submit">Submit</button>
                 </Form>
               )}

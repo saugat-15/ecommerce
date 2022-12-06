@@ -6,7 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateUsers } from "../../reducersSlice/userSlice";
 import { message } from "antd";
-const Basic = () => {
+
+const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -23,16 +24,18 @@ const Basic = () => {
     const response = await fetch("http://localhost:5000/login", requestOptions);
     const data = await response.json();
 
-    if (data) {
-      console.log(data);
+    if (data.token) {
       data.detail.token = data.token;
-      message.success('Logged In')
+
+      message.success("Logged In");
       dispatch(updateUsers(data.detail));
       if (data.detail.role === "admin") {
         navigate("/admin");
       } else {
         navigate("/home");
       }
+    } else {
+      message.error("Invalid Credentials");
     }
   };
   return (
@@ -78,4 +81,4 @@ const Basic = () => {
     </div>
   );
 };
-export default Basic;
+export default Login;

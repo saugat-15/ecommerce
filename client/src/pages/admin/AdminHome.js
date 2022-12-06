@@ -15,11 +15,11 @@ import SearchIcon from '@mui/icons-material/Search';
 
 function AdminHome() {
   const [products, setProducts] = useState([]);
-  const [selectedItem, setSelectedItem] = useState({});
+  // const [selectedItem, setSelectedItem] = useState({});
   const [input, setInput] = useState('')
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
   const filterProducts = () => {
     const searchProd = products.filter((product) => {
       return product.productName.toLowerCase() === input.toLowerCase()
@@ -46,12 +46,14 @@ function AdminHome() {
   // const handleClose = () => {
   //   onClose(selectedValue);
   // };
+
+  // const image = require('../images/inventory.png')
   return (
     <div>
       <Nav />
       <div className="header">
         <div>
-          <img src='https://www.pngmart.com/files/11/Online-Portal-E-Commerce-PNG-Pic.png' height={100} width={200} />
+          <img src='https://www.kindpng.com/picc/m/121-1218470_ecommerce-png-transparent-images-e-commerce-crm-integrated.png' height={150} width={280} />
         </div>
         <p>Online Shopping. 50% Off Everything. Online Shopping. 50% Off Everything</p>
         <div>

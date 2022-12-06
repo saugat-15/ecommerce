@@ -8,7 +8,7 @@ import { message } from "antd";
 function Nav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const name = useSelector((state) => state.users.name);
+  const {name, role} = useSelector((state) => state.users);
   console.log(name);
 
   const triggerLogout = () => {
@@ -20,11 +20,12 @@ function Nav() {
   return (
     <div className="nav">
       <div className="nav-left">
+        <img src="https://www.pngmart.com/files/11/Online-Portal-E-Commerce-PNG-Pic.png" height={60} width={90} style={{margin: '0 1rem'}}/>
         <h3>Ecommerce MERN</h3>
       </div>
       <div className="nav-right">
         <ul>
-          <Link to="/admin" style={{ textDecoration: 'none' }}>
+          <Link to={`${role === 'admin' ? '/admin' : '/home'}`} style={{ textDecoration: 'none' }}>
             <li>Home</li>
           </Link>
           <Link style={{ textDecoration: 'none' }}>

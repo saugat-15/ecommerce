@@ -30,12 +30,13 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin: 1rem 2rem;
+    margin: 1rem;
     cursor: pointer;
     background: #e7e7e7;
     padding: 1rem;
     border-radius: 5px;
-    filter: drop-shadow(3px 2px 0px rgb(169, 166, 166));
+    filter: drop-shadow(2px 1px 0px rgb(169, 166, 166));
+    transition: all 0.3s ease-in;
 }
 
 .product img{
@@ -43,12 +44,11 @@
     height: 140px;
     width: 100%;
     margin: 5px;
-    transition: all 0.3s ease-in;
 
 }
 
-.product img:hover{
-    height: 145px;
+.product:hover{
+    filter: drop-shadow(4px 3px 0px rgb(169, 166, 166));
 }
 
 .header {

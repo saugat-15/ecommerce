@@ -1,0 +1,18 @@
+.header_bg{
+    position: relative;
+}
+.header_bg img{
+    height: 250px;
+    width: 100%;
+    /* position: relative; */
+}
+
+.header_bg .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    opacity: 0.7;
+}

@@ -31,7 +31,12 @@ router.post("/", async (req, res) => {
         }
       });
     }
-  } catch {}
+  } catch(error) {
+    res.json({
+        msg: `invalid creds`,
+        errorDetails: error
+      });
+  }
 });
 
 module.exports = router;

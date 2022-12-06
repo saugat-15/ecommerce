@@ -56,10 +56,7 @@ router.put("/", upload.single("file"), async (req, res) => {
     req.body.productImage = req.file.filename;
     console.log(req.body);
     const id = req.body.id;
-    const product = await Products.findByIdAndUpdate(
-      id, req.body
-      
-    );
+    const product = await Products.findByIdAndUpdate(id, req.body);
 
     if (product) {
       res.json({

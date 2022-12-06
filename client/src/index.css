@@ -63,7 +63,7 @@ input,select,textarea {
 }
 
 input:focus, select:focus,textarea:focus{
-  outline: 1;
+  outline: 0;
 }
 
 ::placeholder,
@@ -75,7 +75,7 @@ option:first-child {
 
 button {
   background: #068c5f;
-  margin: 1rem;
+  margin: 1rem 0;
   padding: 10px ;
   border: 1px solid transparent;
   border-radius: 5px;

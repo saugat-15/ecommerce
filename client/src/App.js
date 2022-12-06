@@ -5,30 +5,72 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import HomePage from "./pages/HomePage";
 import AdminHome from "./pages/admin/AdminHome";
-
 import { useSelector } from "react-redux";
 import AddProducts from "./pages/admin/AddProducts";
 import Product from "./pages/admin/Product";
+import { useEffect, useState } from "react";
+import { message } from "antd";
 
 function App() {
-  const token = useSelector((state) => state.users.token);
+  const { token, role } = useSelector((state) => state.users);
+  const [authorizeRole, setAuthorizeRole] = useState(null);
+
+  const navigateControl = () => {
+    if (token && role === "admin") {
+      setAuthorizeRole("admin");
+    } else if (token && role === "user") {
+      setAuthorizeRole("user");
+    } else {
+      setAuthorizeRole(null);
+    }
+  };
+
+  useEffect(() => {
+    navigateControl();
+  }, [role, token]);
   // const token = 5
   // console.log(token)
   return (
     <div className="App">
-      {/* <Login /> */}
-
-      <BrowserRouter>
+      {!authorizeRole ? (
+        // <BrowserRouter>
         <Routes>
-          {token &&            <Route path="/admin" element={<AdminHome />} />}
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
-          <Route path="/products" element={<AddProducts />} />
-          <Route path="/products/product" element={<Product />} />
         </Routes>
-      </BrowserRouter>
+      ) : (
+        // </BrowserRouter>
+        <AuthorisedUsers authorizeRole={authorizeRole} />
+      )}
     </div>
   );
 }
+
+const AuthorisedUsers = (props) => {
+  if (props.authorizeRole === "user") {
+    return <UserRoute />;
+  } else {
+    return <AdminRoute />;
+  }
+};
+
+const UserRoute = () => {
+  return (
+    <Routes>
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/products/:id" element={<Product />} />
+    </Routes>
+  );
+};
+
+const AdminRoute = () => {
+  return (
+    <Routes>
+      <Route path="/admin" element={<AdminHome />} />
+      <Route path="/products" element={<AddProducts />} />
+      <Route path="/products/product" element={<Product />} />
+    </Routes>
+  );
+};
 
 export default App;
