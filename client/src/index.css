@@ -66,6 +66,14 @@ input:focus, select:focus,textarea:focus{
   outline: 0;
 }
 
+.pagination{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem;
+  /* width: 100%; */
+}
 ::placeholder,
 option:first-child {
   color: #7d7d7d;

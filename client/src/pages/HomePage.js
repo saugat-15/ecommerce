@@ -5,7 +5,9 @@ import { setProductDetails } from "../reducersSlice/productSlice";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "../components/Header";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import Search from "../components/Search";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function HomePage() {
   const searchedProduct = useSelector(state => state.product.searchedProduct);
@@ -33,7 +35,8 @@ function HomePage() {
   return (
     <div>
       <Nav />
-      <Header />
+      <ShoppingCartIcon onClick={()=>navigate('/cart')} />
+      {/* <Header /> */}
       <Search products={products}/>
       {/* hi,  */}
       <div className="products">
@@ -54,6 +57,7 @@ function HomePage() {
           </div>
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

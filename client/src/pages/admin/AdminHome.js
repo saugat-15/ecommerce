@@ -13,43 +13,18 @@ import { setProductDetails } from "../../reducersSlice/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import Search from "../../components/Search";
+import Footer from "../../components/Footer";
 
 function AdminHome() {
   const searchedProduct = useSelector(state => state.product.searchedProduct)
-  const [products, setProducts] = useState([]);
-  // const [selectedItem, setSelectedItem] = useState({});
-  const [input, setInput] = useState("");
-  const [open, setOpen] = useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
-  const filterProducts = () => {
-    if (input) {
-    const searchProd = products.filter((product) => {
-        return product.productName.toLowerCase() === input.toLowerCase();
-      });
-      setProducts(searchProd);
-    }
-  };
-
+  // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-
-  const fetchProducts = async () => {
-    const response = await fetch("http://localhost:5000/products");
-    const data = await response.json();
-    setProducts(data.productsList);
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, [input]);
-
-  console.log(products);
-  console.log(input);
   const navigate = useNavigate();
   // const handleClose = () => {
   //   onClose(selectedValue);
   // };
 
+  // console.log(products)
   // const image = require('../images/inventory.png')
   return (
     <div>
@@ -72,7 +47,7 @@ function AdminHome() {
           </button>
         </div>
       </div>
-      <Search products={products}/>
+      <Search products={searchedProduct}/>
       <div className="products">
         {searchedProduct.map((product) => (
           <div key={product._id} className="product">
@@ -90,6 +65,10 @@ function AdminHome() {
             </Link>
           </div>
         ))}
+      </div>
+      <div>
+
+        <Footer />
       </div>
     </div>
   );

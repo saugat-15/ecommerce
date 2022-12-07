@@ -10,13 +10,14 @@ import { useSelector } from "react-redux";
 function AddProducts(props) {
   const {product} = useSelector(state => state.product)
   const navigate = useNavigate();
-  console.log(props.flag);
+  console.log(props.selectedItem);
   console.log(product)
 
   const initialValues = {
     productName: "",
     productType: "",
     price: "",
+    description: "",
     id: "",
     // foodCategory: "",
   };
@@ -29,12 +30,14 @@ function AddProducts(props) {
           initialValues={props?.selectedItem || initialValues}
           enableReinitialize={true}
           onSubmit={async (values, action) => {
+            // console.log(values)
             const formData = new FormData();
             formData.append("file", productImage);
             formData.append("productName", values.productName);
             formData.append("productType", values.productType);
             formData.append("price", values.price);
-            formData.append("id", product._id)
+            formData.append("description", values.description);
+            formData.append("id", product._id);
 
             let requestOptions;
             
@@ -47,6 +50,7 @@ function AddProducts(props) {
                   productImage: product.productImage,
                   productName: values.productName,
                   price: values.price,
+                  description: values.description,
                   _id: product._id
                 }) 
               };
@@ -69,8 +73,9 @@ function AddProducts(props) {
               console.log(data);
               message.success(data.message);
               action.resetForm();
+              props?.fetchData()
 
-              navigate("/admin");
+              
             }
             // action.resetForm()
           }}
@@ -84,6 +89,8 @@ function AddProducts(props) {
 
             <label htmlFor="price">Price</label>
             <Field id="price" name="price" placeholder="$450" type="text" />
+            <label htmlFor="decription">Product Description</label>
+            <Field id="description" name="description" placeholder="Product Decription" type="text" />
             <input
               type="file"
               onChange={(e) => setProductImage(e.target.files[0])}
