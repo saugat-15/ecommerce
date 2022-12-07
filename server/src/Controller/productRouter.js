@@ -50,12 +50,12 @@ router.post("/", upload.single("file"), async (req, res) => {
   }
 });
 
-router.put("/", upload.single("file"), async (req, res) => {
-  console.log(req.file);
+router.put("/", async (req, res) => {
+//   console.log(req.file);
   try {
-    req.body.productImage = req.file.filename;
+    // req.body.productImage = req.file.filename;
     console.log(req.body);
-    const id = req.body.id;
+    const id = req.body._id;
     const product = await Products.findByIdAndUpdate(id, req.body);
 
     if (product) {

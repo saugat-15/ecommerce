@@ -36,11 +36,27 @@ function AddProducts(props) {
             formData.append("price", values.price);
             formData.append("id", product._id)
 
-            const requestOptions = {
-              method: props.flag ? "PUT" : "POST",
-              // headers: props.flag ? '' : { "Content-Type": "application/json" },
-              body:  formData 
-            };
+            let requestOptions;
+            
+            if(props.flag){
+
+              requestOptions= {
+                method: "PUT",
+                headers:  { "Content-Type": "application/json" },
+                body:  JSON.stringify({
+                  productImage: product.productImage,
+                  productName: values.productName,
+                  price: values.price,
+                  _id: product._id
+                }) 
+              };
+            }else{
+              requestOptions= {
+                method: "POST",
+                // headers:  { "Content-Type": "application/json" },
+                body: formData
+              };
+            }
 
             const response = await fetch(
               "http://localhost:5000/products",

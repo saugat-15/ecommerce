@@ -1,6 +1,6 @@
 .products {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     margin: 1rem;
