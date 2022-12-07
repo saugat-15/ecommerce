@@ -20,12 +20,12 @@
     - [x] Login (User credentials saved in Redux Global State)
     - [x] Register
  - [ ] Products
-    - [ ] Search Products by category
+    - [x] Search Products by category
     - [ ] Pagination
     - [ ] Page Size
     - [x] Add Products 
     - [ ] Filter Products by Tags
-    - [ ] Add and Remove Products from Cart
+    - [x] Add and Remove Products from Cart
     - [ ] Add and Remove Products from Wishlist
     - [ ] Total Items and Net total (Invoice)
  
