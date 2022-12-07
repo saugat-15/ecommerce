@@ -35,4 +35,6 @@
  - [ ] Add Review and Rating
  - [ ] Filter products by category
  
+ ![](https://komarev.com/ghpvc/?username=saugatt-15)
+ 
  
