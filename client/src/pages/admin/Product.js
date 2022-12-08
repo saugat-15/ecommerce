@@ -34,7 +34,7 @@ function Product() {
     setOpen(false);
   };
 
-  const productName = product.productName;
+  // const productName = product.productName;
 
   const addToCart = () => {
     dispatch(

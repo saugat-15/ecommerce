@@ -7,7 +7,6 @@ import Header from "../components/Header";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Search from "../components/Search";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 function HomePage() {
   const searchedProduct = useSelector(state => state.product.searchedProduct);
@@ -35,7 +34,6 @@ function HomePage() {
   return (
     <div>
       <Nav />
-      <ShoppingCartIcon onClick={()=>navigate('/cart')} />
       {/* <Header /> */}
       <Search products={products}/>
       {/* hi,  */}
