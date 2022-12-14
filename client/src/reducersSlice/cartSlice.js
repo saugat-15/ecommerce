@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         // if(state.cart === []){
             state.cart.map((item) => {
               if(item.productId === actions.payload){
-                item.productCount = item.productCount - 2;
+                item.productCount = item.productCount - 1;
               }
             })
         // }else{

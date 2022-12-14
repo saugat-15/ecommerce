@@ -1,9 +1,9 @@
 const express = require('express')
 const app = express()
+require("dotenv").config();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const PORT = 5000;
-require("dotenv").config();
+// const PORT = 5000;
 
 
 const connectMongoose = require("./db/mongoose");
@@ -22,6 +22,6 @@ app.use('/products', productsRouter)
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 
-app.listen(PORT, () => {
-    console.log(`ecommerce server starting on port: ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`ecommerce server starting on port: ${process.env.PORT}`)
 })

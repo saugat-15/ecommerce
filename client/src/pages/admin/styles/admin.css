@@ -7,8 +7,9 @@
     /* margin: 1rem; */
     flex-wrap: wrap;
     /* row-gap: 10px; */
-    /* column-gap: 2em; */
+    column-gap: 2em;
     padding: 1rem;
+    justify-content: center;
 }
 
 .search {

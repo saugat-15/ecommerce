@@ -15,7 +15,7 @@ function HomePage() {
   const dispatch = useDispatch();
   const users = useSelector(state => state.users);
 
-  console.log(searchedProduct)
+  // console.log(searchedProduct)
 
   const fetchProducts = async () => {
     const response = await fetch("http://localhost:5000/products");

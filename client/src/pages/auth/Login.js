@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
 // import { useDispatch, useSelector } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { updateUsers } from "../../reducersSlice/userSlice";
@@ -10,6 +11,11 @@ import { message } from "antd";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const inputRef = useRef("")
+
+  useEffect(() => {
+    inputRef.current.focus()
+  }, [])
 
   const userLogin = async (values) => {
     const requestOptions = {
@@ -63,6 +69,7 @@ const Login = () => {
           <Form style={{ margin: "1rem auto" }}>
             <label>Email</label>
             <Field type="email" name="email" />
+            <input ref={inputRef}/>
             <ErrorMessage name="email" component="div" />
             <label>Password</label>
 

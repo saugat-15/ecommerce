@@ -10,7 +10,7 @@ function Nav() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name, role } = useSelector((state) => state.users);
-  console.log(name);
+  // console.log(name);
 
   const triggerLogout = () => {
     dispatch(resetUserCredentials());

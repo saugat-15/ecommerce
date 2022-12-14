@@ -48,6 +48,7 @@ function Product() {
       })
     );
     message.success('Added to Cart')
+    navigate('/home')
   };
 
   const triggerDelete = async () => {
