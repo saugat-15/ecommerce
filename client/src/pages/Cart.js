@@ -11,6 +11,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Checkout from "./Checkout";
 
 function Cart() {
   const product = useSelector((state) => state.product.product);
@@ -18,8 +20,10 @@ function Cart() {
   const [productCount, setProductCount] = useState(product.productCount);
   const dispatch = useDispatch();
   const { cart } = useSelector((state) => state.cart);
+  const navigate = useNavigate();
   // const newCart = [...cart];
   console.log(cart);
+  // debugger;
 
   const resetCart = () => {
     dispatch(resetCartItems());
@@ -33,7 +37,7 @@ function Cart() {
     return acc + currVal;
   }, 0);
 
-  console.log(itemCount);
+  // console.log(itemCount);
 
   const totalPrice = items.reduce((acc, total) => {
     return acc + total;
@@ -53,6 +57,10 @@ function Cart() {
   //   console.log(product);
 
   //   console.log(cart);
+
+  const checkout = () => {
+    navigate('/checkout');
+  }
   return (
     <>
       <Nav />
@@ -75,8 +83,8 @@ function Cart() {
               // below props only if you need pull down functionality
             >
               {cart.map((product) => (
-                <div key={product.productId} className="cart-items">
-                  <img src={require(`../../uploads/${product.productImage}`)} />
+                <div key={product.productId} className="cart-items ">
+                  <img src={require(`../uploads/${product.productImage}`)} />
 
                   <div className="cart-item-details">
                     <span> Item: {product.productName}</span>
@@ -139,7 +147,7 @@ function Cart() {
               </div>
             </div>
             <div>
-              <button style={{ background: "#0c75a6" }}>
+              <button style={{ background: "#0c75a6" }} onClick={checkout}>
                 Proceed to checkout
               </button>
             </div>

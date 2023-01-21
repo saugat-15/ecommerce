@@ -15,10 +15,10 @@ function HomePage() {
   const dispatch = useDispatch();
   const users = useSelector(state => state.users);
 
-  // console.log(searchedProduct)
+  console.log(searchedProduct)
 
   const fetchProducts = async () => {
-    const response = await fetch("http://localhost:5000/products");
+    const response = await fetch("http://localhost:4000/products");
     const data = await response.json();
     setProducts(data.productsList);
   };
@@ -37,6 +37,7 @@ function HomePage() {
       {/* <Header /> */}
       <Search products={products}/>
       {/* hi,  */}
+      {
       <div className="products">
         {searchedProduct.map((product) => (
           <div key={product._id} className="product">
@@ -47,7 +48,10 @@ function HomePage() {
                 dispatch(setProductDetails(product));
               }}
             >
-              <img src={require(`../../uploads/${product.productImage}`)} />
+             {
+             product.productImage !== undefined &&
+             <img src={require(`../uploads/${product.productImage}`)} />
+             }  
               <h4> {product.productName}</h4>
               {/* <span>Type:{product.productType}</span> */}
               <span>${product.price}</span>
@@ -55,6 +59,8 @@ function HomePage() {
           </div>
         ))}
       </div>
+
+      }
       <Footer />
     </div>
   );

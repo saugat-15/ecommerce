@@ -3,9 +3,10 @@ import * as Yup from "yup";
 // import FormText from "../../component/formText";
 // import Image from "../../images/delivery_girl.svg";
 import { Link, useNavigate } from "react-router-dom";
+import { message } from "antd";
 
 const Register = () => {
-//   const navigate = useNavigate();
+  const navigate = useNavigate();
   const saveParticipants = async (values) => {
     const requestOptions = {
       method: "POST",
@@ -21,12 +22,15 @@ const Register = () => {
       }),
     };
     const response = await fetch(
-      "http://localhost:5000/register/",
+      "http://localhost:4000/register",
       requestOptions
     );
     const data = await response.json();
     if (data) {
      console.log(data)
+     navigate('/')
+     message.success('User Created Successfully')
+     
     }
   };
 

@@ -24,8 +24,8 @@ function Search(props) {
     
     
     const fetchProducts = async () => {
-        const response = await fetch("http://localhost:5000/products");
-        const data = await response.json();
+      const response = await fetch("http://localhost:4000/products");
+      const data = await response.json();
         setProducts(data.productsList)
         dispatch(setSearchedProduct(data.productsList))
       };

@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, forwardRef } from "react";
 // import { useDispatch, useSelector } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import { updateUsers } from "../../reducersSlice/userSlice";
@@ -11,10 +11,16 @@ import { message } from "antd";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const inputRef = useRef("")
+  // const inputRef = useRef("")
+
+  const focusEmail = () => {
+    // inputRef.current.focus()
+    console.log('hello')
+  }
 
   useEffect(() => {
-    inputRef.current.focus()
+    focusEmail()
+    
   }, [])
 
   const userLogin = async (values) => {
@@ -27,7 +33,9 @@ const Login = () => {
       }),
     };
 
-    const response = await fetch("http://localhost:5000/login", requestOptions);
+    // const response = await fetch("", requestOptions);
+    const response = await fetch("http://localhost:4000/login", requestOptions);
+
     const data = await response.json();
 
     if (data.token) {
@@ -69,7 +77,7 @@ const Login = () => {
           <Form style={{ margin: "1rem auto" }}>
             <label>Email</label>
             <Field type="email" name="email" />
-            <input ref={inputRef}/>
+            {/* <input ref={inputRef}/> */}
             <ErrorMessage name="email" component="div" />
             <label>Password</label>
 

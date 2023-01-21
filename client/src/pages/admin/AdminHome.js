@@ -16,7 +16,7 @@ import Search from "../../components/Search";
 import Footer from "../../components/Footer";
 
 function AdminHome() {
-  const searchedProduct = useSelector(state => state.product.searchedProduct)
+  const searchedProduct = useSelector((state) => state.product.searchedProduct);
   // const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ function AdminHome() {
           </button>
         </div>
       </div>
-      <Search products={searchedProduct}/>
+      <Search products={searchedProduct} />
       <div className="products">
         {searchedProduct.map((product) => (
           <div key={product._id} className="product">
@@ -58,7 +58,10 @@ function AdminHome() {
                 dispatch(setProductDetails(product));
               }}
             >
-              <img src={require(`../../../uploads/${product.productImage}`)} />
+              {
+                product?.productImage && 
+              <img src={require(`../../uploads/${product.productImage}`)} />
+              }
               <h4> {product.productName}</h4>
               {/* <span>Type:{product.productType}</span> */}
               <span>${product.price}</span>
@@ -67,7 +70,6 @@ function AdminHome() {
         ))}
       </div>
       <div>
-
         <Footer />
       </div>
     </div>

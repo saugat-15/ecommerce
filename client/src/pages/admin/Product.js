@@ -58,7 +58,7 @@ function Product() {
     };
 
     const response = await fetch(
-      `http://localhost:5000/products/${product._id}`,
+      `http://localhost:4000/products/${product._id}`,
       requestOptions
     );
 
@@ -95,7 +95,7 @@ function Product() {
         <div>
           <img
             style={{ height: "400px" }}
-            src={require(`../../../uploads/${product.productImage}`)}
+            src={require(`../../uploads/${product.productImage}`)}
           />
           <h4> {product.productName}</h4>
           {/* <span>Type:{product.productType}</span> */}

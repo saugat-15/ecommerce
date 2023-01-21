@@ -11,6 +11,7 @@ import Product from "./pages/admin/Product";
 import { useEffect, useState } from "react";
 import { message } from "antd";
 import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const { token, role } = useSelector((state) => state.users);
@@ -61,6 +62,7 @@ const UserRoute = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/:id" element={<Product />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Routes>
   );
 };

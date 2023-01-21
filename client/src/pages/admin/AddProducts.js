@@ -8,10 +8,10 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function AddProducts(props) {
-  const {product} = useSelector(state => state.product)
+  const { product } = useSelector((state) => state.product);
   const navigate = useNavigate();
   console.log(props.selectedItem);
-  console.log(product)
+  console.log(product);
 
   const initialValues = {
     productName: "",
@@ -30,40 +30,58 @@ function AddProducts(props) {
           initialValues={props?.selectedItem || initialValues}
           enableReinitialize={true}
           onSubmit={async (values, action) => {
-            // console.log(values)
+            console.log("**************");
+            console.log(values);
             const formData = new FormData();
-            formData.append("file", productImage);
+            if (productImage) {
+              formData.append("image", productImage);
+            }
             formData.append("productName", values.productName);
             formData.append("productType", values.productType);
             formData.append("price", values.price);
             formData.append("description", values.description);
-            formData.append("id", product._id);
-
-            let requestOptions;
-            
-            if(props.flag){
-
-              requestOptions= {
-                method: "PUT",
-                headers:  { "Content-Type": "application/json" },
-                body:  JSON.stringify({
-                  productImage: product.productImage,
-                  productName: values.productName,
-                  price: values.price,
-                  description: values.description,
-                  _id: product._id
-                }) 
-              };
-            }else{
-              requestOptions= {
-                method: "POST",
-                // headers:  { "Content-Type": "application/json" },
-                body: formData
-              };
+            if (props.flag) {
+              formData.append("id", product._id);
             }
 
+            let requestOptions;
+
+            if (props.flag) {
+              if (productImage) {
+                requestOptions = {
+                  method: "PUT",
+                  // headers: { "Content-Type": "multipart/form-data" },
+                  body: formData,
+                };
+              } else {
+                requestOptions = {
+                  method: "PUT",
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    // productImage: formData,
+                    productName: values.productName,
+                    price: values.price,
+                    productType: values.productType,
+
+                    description: values.description,
+                    _id: product._id,
+                  }),
+                };
+              }
+            } else {
+              requestOptions = {
+                method: "POST",
+                // headers: { "Content-Type": "multipart/form-data" },
+                body: formData,
+              };
+            }
+            console.log(requestOptions);
+            console.log("---------------->>>");
+
             const response = await fetch(
-              "http://localhost:5000/products",
+              "http://localhost:4000/products",
               requestOptions
             );
 
@@ -72,10 +90,8 @@ function AddProducts(props) {
             if (data) {
               console.log(data);
               message.success(data.message);
-              action.resetForm();
-              props?.fetchData()
-
-              
+              // action.resetForm();
+              // props?.fetchData()
             }
             // action.resetForm()
           }}
@@ -90,7 +106,12 @@ function AddProducts(props) {
             <label htmlFor="price">Price</label>
             <Field id="price" name="price" placeholder="$450" type="text" />
             <label htmlFor="decription">Product Description</label>
-            <Field id="description" name="description" placeholder="Product Decription" type="text" />
+            <Field
+              id="description"
+              name="description"
+              placeholder="Product Decription"
+              type="text"
+            />
             <input
               type="file"
               onChange={(e) => setProductImage(e.target.files[0])}
